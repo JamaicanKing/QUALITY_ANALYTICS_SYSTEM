@@ -58,6 +58,19 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('category.index') }}">
+                                        {{ __('Category') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('rating.index') }}">
+                                        {{ __('Ratings') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('attribute.index') }}">
+                                        {{ __('Attribute') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
