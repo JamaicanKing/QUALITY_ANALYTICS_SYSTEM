@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rating;
+use App\Models\Reason;
 
-class RatingController extends Controller
+class ReasonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $ratings = Rating::all();
+        $reasons = Reason::all();
 
-        return view('rating.index',['ratings' => $ratings]);
+        return view('reason.index',['reasons' => $reasons]);
     }
 
     /**
@@ -26,7 +26,7 @@ class RatingController extends Controller
      */
     public function create()
     {
-        return view('rating.create');
+        return view('reason.create');
     }
 
     /**
@@ -37,15 +37,15 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        $rating = Rating::create([
+        $reasons = Reason::create([
             
-            'rating' => $request->input('rating'),
+            'reason' => $request->input('reason'),
             'created_date' => date('Y-m-d H:i:s'),
             'created_by' => 1,
             'updated_by' => 1,
         ]);
 
-        return redirect()->route('rating.index');
+        return redirect()->route('reason.index');
     }
 
     /**
@@ -67,9 +67,9 @@ class RatingController extends Controller
      */
     public function edit($id)
     {
-        $rating = Rating::find($id);
+        $reason = Reason::find($id);
 
-        return view('rating.edit',['rating' => $rating]);
+        return view('reason.edit',['reason' => $reason]);
     }
 
     /**
@@ -81,7 +81,12 @@ class RatingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $reason = Reason::find($id);
+        $reason->reason = $request->input('reason');
+
+        $reason->save();
+
+        return redirect()->route('reason.index');
     }
 
     /**
@@ -92,8 +97,6 @@ class RatingController extends Controller
      */
     public function destroy($id)
     {
-        Rating::destroy($id);
-
-        return redirect()->route("rating.index");
+        return redirect()->route("reason.index");
     }
 }

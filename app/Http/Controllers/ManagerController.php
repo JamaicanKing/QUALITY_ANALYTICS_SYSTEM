@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rating;
+use App\Models\Manager;
 
-class RatingController extends Controller
+class ManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $ratings = Rating::all();
+        $managers = Manager::all();
 
-        return view('rating.index',['ratings' => $ratings]);
+        return view('manager.index',['managers' => $managers]);
     }
 
     /**
@@ -26,7 +26,7 @@ class RatingController extends Controller
      */
     public function create()
     {
-        return view('rating.create');
+        return view('manager.create');
     }
 
     /**
@@ -37,15 +37,16 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        $rating = Rating::create([
+        $manager = Manager::create([
             
-            'rating' => $request->input('rating'),
+            'firstname' => $request->input('firstname'),
+            'lastname' => $request->input('lastname'),
             'created_date' => date('Y-m-d H:i:s'),
             'created_by' => 1,
             'updated_by' => 1,
         ]);
 
-        return redirect()->route('rating.index');
+        return redirect()->route('manager.index');
     }
 
     /**
@@ -67,9 +68,9 @@ class RatingController extends Controller
      */
     public function edit($id)
     {
-        $rating = Rating::find($id);
+        $manager = Manager::find($id);
 
-        return view('rating.edit',['rating' => $rating]);
+        return view('manager.edit',['manager' => $manager]);
     }
 
     /**
@@ -81,7 +82,13 @@ class RatingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $manager = Manager::find($id);
+        $manager->firstname = $request->input('firstname');
+        $manager->lastname = $request->input('lastname');
+
+        $manager->save();
+
+        return redirect()->route('manager.index');
     }
 
     /**
@@ -92,8 +99,8 @@ class RatingController extends Controller
      */
     public function destroy($id)
     {
-        Rating::destroy($id);
+        Manager::destroy($id);
 
-        return redirect()->route("rating.index");
+        return redirect()->route("manager.index");
     }
 }

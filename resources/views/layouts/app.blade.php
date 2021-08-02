@@ -59,8 +59,20 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
+                                    <a class="dropdown-item" href="{{ route('evaluation.index') }}">
+                                        {{ __('Evaluation Management') }}
+                                    </a>
+                                    
+                                    <a class="dropdown-item" href="{{ route('agent.index') }}">
+                                        {{ __('Agent Management') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('category.index') }}">
                                         {{ __('Category') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('query.index') }}">
+                                        {{ __('Query Categories') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('rating.index') }}">
@@ -69,6 +81,50 @@
 
                                     <a class="dropdown-item" href="{{ route('attribute.index') }}">
                                         {{ __('Attribute') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('reason.index') }}">
+                                        {{ __('Reason') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('teamleader.index') }}">
+                                        {{ __('Teamleaders') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('manager.index') }}">
+                                        {{ __('Managers') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('primaryFunction.index') }}">
+                                        {{ __('Primary Function') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('departments.index') }}">
+                                        {{ __('Departments') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('locations.index') }}">
+                                        {{ __('Locations') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('classifications.index') }}">
+                                        {{ __('Classifications') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('market.index') }}">
+                                        {{ __('Markets') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('skillset.index') }}">
+                                        {{ __('Skillsets') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('observationType.index') }}">
+                                        {{ __('Observation Type') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('evaluationClassification.index') }}">
+                                        {{ __('Evalauation Classification') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

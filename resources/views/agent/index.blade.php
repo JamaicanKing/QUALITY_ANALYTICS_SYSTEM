@@ -4,8 +4,8 @@
  
 
 <div class = "mx-auto" style="width: 1000px;">
-  <a href="{{ route("rating.create") }}">
-    <button role="button" class="btn btn-success" type="submit" >ADD Rating</button>
+  <a href="{{ route("agent.create") }}">
+    <button role="button" class="btn btn-success" type="submit" >ADD Agent</button>
   </a> 
 
 </div>
@@ -15,25 +15,34 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Rating</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Manager</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-        @foreach($ratings as $rating)
+        @foreach($agents as $agent)
         <tr>
-            <td>{{ $rating->id }}</td>
-            <td>{{ $rating->rating}}</td>
+            <td>{{ $agent->id }}</td>
+            <td>{{ $agent->firstname}}</td>
+            <td>{{ $agent->lastname}}</td>
+            <td>{{ $agent->username}}</td>
+            <td>{{ $agent->email}}</td>
+            <td>{{ $agent->manager}}</td>
+
             <td>
                 <div class="container">
                     <div class="row">
                         <div class="col" style="padding-right: 0px; flex-grow: 0;">   
-                            <a href="{{ route("rating.edit",['rating' => $rating->id]) }}">
+                            <a href="{{ route("agent.edit",['agent' => $agent->id]) }}">
                                 <button role="button" class="btn btn-success" type="submit" >Edit</button>
                             </a> 
                         </div>
                         <div class="col" style="padding-right: 0px; flex-grow: 0;">
-                            <form action="{{ route("rating.destroy",['rating' => $rating->id]) }}" method="POST">
+                            <form action="{{ route("agent.destroy",['agent' => $agent->id]) }}" method="POST">
                                 @csrf
                                 @method("Delete")
                                 <button role="button" class="btn btn-danger">Delete</button>

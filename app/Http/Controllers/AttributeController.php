@@ -19,7 +19,7 @@ class AttributeController extends Controller
         $attributes = Attribute::all();
 
         foreach ($attributes as $key => $attribute) {
-            $attribute[$key]->subject_name = Category::find($attribute->category_id)->name;
+            $attributes[$key]->category_name = Category::find($attribute->category_id)->name;
         };
 
         return view('attribute.index',['attributes' => $attributes]);
@@ -46,7 +46,15 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attribute = Attribute::create([
+            'attribute' => $request->input('attribute'),
+            'weightage' => $request->input('weightage'),
+            'category_id' => $request->input('category_name'),
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
+
+        return redirect()->route("attribute.index");
     }
 
     /**
@@ -66,9 +74,18 @@ class AttributeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $attribute = Attribute::find($id);
+        $category = Category::all(['id','name']);
+        $category_id = $request->input('categoryId');
+        
+        return view('attribute.edit',
+        [
+            'attribute' => $attribute,
+            'category' => $category,
+            'category_id' => $category_id,
+        ]);
     }
 
     /**
@@ -80,7 +97,14 @@ class AttributeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $attribute = Attribute::find($id);
+        $attribute->attribute = $request->input('attribute');
+        $attribute->weightage = $request->input('weightage');
+        $attribute->category_id = $request->input('category_name');
+
+        $attribute->save();
+
+        return redirect()->route('attribute.index');
     }
 
     /**

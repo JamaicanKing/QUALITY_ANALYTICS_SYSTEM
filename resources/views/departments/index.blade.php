@@ -4,8 +4,8 @@
  
 
 <div class = "mx-auto" style="width: 1000px;">
-  <a href="{{ route("rating.create") }}">
-    <button role="button" class="btn btn-success" type="submit" >ADD Rating</button>
+  <a href="{{ route("departments.create") }}">
+    <button role="button" class="btn btn-success" type="submit" >ADD Dpartments</button>
   </a> 
 
 </div>
@@ -15,25 +15,25 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Rating</th>
+        <th scope="col">Functions</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-        @foreach($ratings as $rating)
+        @foreach($departments as $department)
         <tr>
-            <td>{{ $rating->id }}</td>
-            <td>{{ $rating->rating}}</td>
+            <td>{{ $department->id }}</td>
+            <td>{{ $department->name}}</td>
             <td>
                 <div class="container">
                     <div class="row">
                         <div class="col" style="padding-right: 0px; flex-grow: 0;">   
-                            <a href="{{ route("rating.edit",['rating' => $rating->id]) }}">
+                            <a href="{{ route("departments.edit",['department' => $department->id]) }}">
                                 <button role="button" class="btn btn-success" type="submit" >Edit</button>
                             </a> 
                         </div>
                         <div class="col" style="padding-right: 0px; flex-grow: 0;">
-                            <form action="{{ route("rating.destroy",['rating' => $rating->id]) }}" method="POST">
+                            <form action="{{ route("departments.destroy",['department' => $department->id]) }}" method="POST">
                                 @csrf
                                 @method("Delete")
                                 <button role="button" class="btn btn-danger">Delete</button>

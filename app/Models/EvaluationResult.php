@@ -5,19 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rating extends Model
+class EvaluationResult extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'rating',
+
+        'agent_evalauation_id',
+        'attribute_id',
+        'rating_id',
+        'comments',
+        'score',
         'created_by',
         'updated_by',
-    ];
 
+    ];
 }

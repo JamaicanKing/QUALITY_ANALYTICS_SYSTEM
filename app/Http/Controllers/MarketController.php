@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rating;
+use App\Models\Manager;
+use App\Models\Market;
 
-class RatingController extends Controller
+class MarketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $ratings = Rating::all();
+        $markets = Market::all();
 
-        return view('rating.index',['ratings' => $ratings]);
+        return view('market.index',['markets' => $markets]);
     }
 
     /**
@@ -26,7 +27,7 @@ class RatingController extends Controller
      */
     public function create()
     {
-        return view('rating.create');
+        return view('market.create');
     }
 
     /**
@@ -37,15 +38,15 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        $rating = Rating::create([
-            
-            'rating' => $request->input('rating'),
+        $market = Market::create([
+
+            'name' => $request->input('name'),
             'created_date' => date('Y-m-d H:i:s'),
             'created_by' => 1,
             'updated_by' => 1,
         ]);
 
-        return redirect()->route('rating.index');
+       return redirect()->route('market.index');
     }
 
     /**
@@ -67,9 +68,7 @@ class RatingController extends Controller
      */
     public function edit($id)
     {
-        $rating = Rating::find($id);
-
-        return view('rating.edit',['rating' => $rating]);
+        //
     }
 
     /**
@@ -92,8 +91,8 @@ class RatingController extends Controller
      */
     public function destroy($id)
     {
-        Rating::destroy($id);
+        Market::destroy($id);
 
-        return redirect()->route("rating.index");
+        return redirect()->route("market.index");
     }
 }

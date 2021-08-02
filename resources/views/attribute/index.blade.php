@@ -16,6 +16,8 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Attribute</th>
+        <th scope="col">Weightage</th>
+        <th scope="col">Category</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -30,12 +32,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="col" style="padding-right: 0px; flex-grow: 0;">   
-                            <a href="{{ route("subjects.edit",['subject' => $attribute->id]) }}">
+                            <a href="{{ route("attribute.edit",['attribute' => $attribute->id, 'categoryId' => $attribute->category_id]) }}">
                                 <button role="button" class="btn btn-success" type="submit" >Edit</button>
                             </a> 
                         </div>
+                        <div class="col" style="padding-right: 0px; flex-grow: 0;"> 
+                        </div>
+
                         <div class="col" style="padding-right: 0px; flex-grow: 0;">
-                            <form action="{{ route("subjects.destroy",['subject' => $attribute->id]) }}" method="POST">
+                            <form action="{{ route("attribute.destroy",['attribute' => $attribute->id]) }}" method="POST">
                                 @csrf
                                 @method("Delete")
                                 <button role="button" class="btn btn-danger">Delete</button>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rating;
+use App\Models\EvaluationClassification;
 
-class RatingController extends Controller
+class EvaluationClassificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $ratings = Rating::all();
+        $eClassification = EvaluationClassification::all();
 
-        return view('rating.index',['ratings' => $ratings]);
+        return view('evaluationClassification.index',['eClassifications' => $eClassification]);
     }
 
     /**
@@ -26,7 +26,7 @@ class RatingController extends Controller
      */
     public function create()
     {
-        return view('rating.create');
+        return view('evaluationClassification.create');
     }
 
     /**
@@ -37,15 +37,14 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        $rating = Rating::create([
-            
-            'rating' => $request->input('rating'),
+        $eClassification = EvaluationClassification::create([
+            'name' => $request->input('name'),
             'created_date' => date('Y-m-d H:i:s'),
             'created_by' => 1,
             'updated_by' => 1,
         ]);
 
-        return redirect()->route('rating.index');
+        return redirect()->route('evaluationClassification.index');
     }
 
     /**
@@ -67,9 +66,7 @@ class RatingController extends Controller
      */
     public function edit($id)
     {
-        $rating = Rating::find($id);
-
-        return view('rating.edit',['rating' => $rating]);
+        //
     }
 
     /**
@@ -92,8 +89,6 @@ class RatingController extends Controller
      */
     public function destroy($id)
     {
-        Rating::destroy($id);
-
-        return redirect()->route("rating.index");
+        //
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttributesTable extends Migration
+class CreateAgentEvaluationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreateAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('agent_evaluations', function (Blueprint $table) {
             $table->id();
-            $table->text('attribute');
-            $table->decimal('weightage', 2);
-            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('agent_id')->unsigned();
+            $table->date('evaluation_date');
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
 
-            $table->foreign('category_id')
+            $table->foreign('agent_id')
             ->references('id')
-            ->on('categories')
+            ->on('agents')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });
@@ -38,6 +37,6 @@ class CreateAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('agent_evaluations');
     }
 }

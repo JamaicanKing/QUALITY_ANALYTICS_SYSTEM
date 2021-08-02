@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rating;
+use App\Models\Classification;
+use Prophecy\PhpDocumentor\ClassAndInterfaceTagRetriever;
 
-class RatingController extends Controller
+class ClassificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $ratings = Rating::all();
+        $classifications = Classification::all();
 
-        return view('rating.index',['ratings' => $ratings]);
+        return view('classifications.index',['classifications' => $classifications]);
     }
 
     /**
@@ -26,7 +27,7 @@ class RatingController extends Controller
      */
     public function create()
     {
-        return view('rating.create');
+        return view('classifications.create');
     }
 
     /**
@@ -37,15 +38,14 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        $rating = Rating::create([
-            
-            'rating' => $request->input('rating'),
+        $classification = Classification::create([
+            'name' => $request->input('name'),
             'created_date' => date('Y-m-d H:i:s'),
             'created_by' => 1,
             'updated_by' => 1,
         ]);
 
-        return redirect()->route('rating.index');
+        return redirect()->route('classifications.index');
     }
 
     /**
@@ -67,9 +67,7 @@ class RatingController extends Controller
      */
     public function edit($id)
     {
-        $rating = Rating::find($id);
-
-        return view('rating.edit',['rating' => $rating]);
+        //
     }
 
     /**
@@ -92,8 +90,6 @@ class RatingController extends Controller
      */
     public function destroy($id)
     {
-        Rating::destroy($id);
-
-        return redirect()->route("rating.index");
+        //
     }
 }
