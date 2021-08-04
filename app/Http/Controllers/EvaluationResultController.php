@@ -49,7 +49,20 @@ class EvaluationResultController extends Controller
         categories.name
         FROM `attributes`
         INNER JOIN categories ON attributes.category_id = categories.id");
-        $agents = DB::select("SELECT id,CONCAT(firstname, ' ' ,lastname) as name FROM agents");
+        $agents = DB::select("SELECT 
+        agents.id,
+        CONCAT(agents.firstname,' ',agents.lastname) as name,
+        CONCAT(teamleaders.firstname,' ',teamleaders.lastname) as teamleaders,
+        CONCAT(managers.firstname,' ',managers.lastname) as managers,
+        primary_functions.name as 'Primary Function',
+        departments.name as Department,
+        locations.name as location
+        FROM agents
+        INNER JOIN teamleaders ON agents.teamleader_id = teamleaders.id
+        INNER JOIN managers ON teamleaders.manager_id = managers.id
+        INNER JOIN primary_functions ON agents.primary_function_id = primary_functions.id
+        INNER JOIN departments ON agents.department_id = departments.id
+        INNER JOIN locations ON agents.location_id = locations.id");
         $ratings = Rating::all(['id','rating']);
         $reasons = Reason::all(['id','reason']);
         $markets = Market::all(['id','name']);
@@ -66,7 +79,8 @@ class EvaluationResultController extends Controller
 
                 $attributesGrouped[$attribute->name][] = $attribute;
         }
-        Log::info($attributesGrouped);
+
+        //Log::info($attributesGrouped);
 
         return view('evaluation.create',
         [

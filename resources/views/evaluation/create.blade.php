@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@json($queryCategories)
+
 
 @section('content')
 
@@ -19,14 +19,16 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('evaluation.store') }}" >
                         @csrf
-                        
                         @include('common.components.dropDown',
                         [
+                            'Onchange' => "myfunction()",
                             'fieldLabel' => 'Agent Name :',
                             'fieldName' => 'agent',
                             'defaultDropDownOption' => 'Please Select Agent',
                             'options' => $agents,
                         ])
+
+                        <p id="demo"></p>   
 
                         @include('common.components.dropDown',
                         [
@@ -144,6 +146,8 @@
                             'defaultDropDownOption' => 'Please Query Category',
                             'options' => $queryCategories,
                         ])
+
+                        
 
                         
                    
@@ -277,6 +281,13 @@
                 
         }
     }  
+    document.getElementById("agent").addEventListener("change", myFunction);
+
+    function myFunction() {
+const x = document.getElementById('agent').attributes('customAttribute')
+  document.getElementById("demo").innerHTML = "You selected: " + x;
+    }
+
 </script>
 
   @endsection

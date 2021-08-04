@@ -4,11 +4,11 @@
     <label for="{{ $fieldName }}" class="col-md-4 col-form-label text-md-right">{{ __($fieldLabel) }}</label>
 
     <div class="col-md-6">
-        <select class="form-select" aria-label="Default select example" id="{{ $fieldName }}"  name="{{ $fieldName }}" >
+        <select class="form-select" aria-label="Default select example" id="{{ $fieldName }}"  name="{{ $fieldName }}" onchange="{{ (isset($Onchange)) }}" >
             <option value="">{{ __($defaultDropDownOption) }}</option>
             @if(isset($options))
                 @foreach ( $options as $option )
-                    <option {{ (isset($selectedId) && $selectedId == $option->id ) ? 'selected' : '' }} value="{{ $option->id ?? '' }}">{{ __($option->name ?? '' ) }}</option>  
+                    <option {{ (isset($selectedId) && $selectedId == $option->id ) ? 'selected' : '' }}  manager="{{ __($option->managers ?? '' ) }}" value="{{ $option->name ?? '' }}">{{ __($option->managers ?? '' ) }}</option>  
                 @endforeach
             @endif
             
