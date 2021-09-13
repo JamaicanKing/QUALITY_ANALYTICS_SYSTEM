@@ -19,8 +19,6 @@ class CreateEvaluationResultsTable extends Migration
             $table->bigInteger('attribute_id')->unsigned();
             $table->bigInteger('rating_id')->unsigned();
             $table->bigInteger('reason_id')->unsigned();
-            $table->bigInteger('query_category_id')->unsigned();
-            $table->bigInteger('teamleader_id')->unsigned();
             $table->text('comments');
             $table->decimal('score');
             $table->bigInteger('created_by');
@@ -45,21 +43,6 @@ class CreateEvaluationResultsTable extends Migration
             ->on('ratings')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-
-            $table->foreign('query_category_id')
-            ->references('id')
-            ->on('query_categories')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-
-            $table->foreign('teamleader_id')
-            ->references('id')
-            ->on('teamleaders')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-
-
-
 
         });
     }

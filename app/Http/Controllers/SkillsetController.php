@@ -38,7 +38,7 @@ class SkillsetController extends Controller
     public function store(Request $request)
     {
         $skillset = Skillset::create([
-            'name' => $request->input('name'),
+            'skillset' => $request->input('name'),
             'created_date' => date('Y-m-d H:i:s'),
             'created_by' => 1,
             'updated_by' => 1,

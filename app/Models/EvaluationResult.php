@@ -16,9 +16,11 @@ class EvaluationResult extends Model
      */
     protected $fillable = [
 
-        'agent_evalauation_id',
+        'agent_evaluation_id',
         'attribute_id',
         'rating_id',
+        'reason_id',
+        'query_category_id',
         'comments',
         'score',
         'created_by',

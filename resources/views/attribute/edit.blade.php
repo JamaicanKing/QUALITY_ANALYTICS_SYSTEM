@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+@json($attribute)
 
 @section('content')
 

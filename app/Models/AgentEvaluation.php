@@ -15,8 +15,17 @@ class AgentEvaluation extends Model
      * @var array
      */
     protected $fillable = [
-        'agnet_id',
+        'agent_id',
         'evaluation_date',
+        'primary_function',
+        'market_id',
+        'skillset',
+        'teamleader_id',
+        'observation_type_id',
+        'customer_query',
+        'agent_response',
+        'classification_id',
+        'query_category_id',
         'created_by',
         'updated_by'
     ];

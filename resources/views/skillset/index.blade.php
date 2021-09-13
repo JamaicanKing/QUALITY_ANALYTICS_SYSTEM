@@ -23,7 +23,7 @@
         @foreach($skillsets as $skillset)
         <tr>
             <td>{{ $skillset->id }}</td>
-            <td>{{ $skillset->name}}</td>
+            <td>{{ $skillset->skillset}}</td>
             <td>
                 <div class="container">
                     <div class="row">

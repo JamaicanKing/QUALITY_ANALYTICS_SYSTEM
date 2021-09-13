@@ -15,7 +15,7 @@ class Skillset extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'skillset',
         'created_by',
         'updated_by',
     ];

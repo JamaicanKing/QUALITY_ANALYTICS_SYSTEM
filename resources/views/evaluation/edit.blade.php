@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@json($attributes)
+@json($evaluation)
 
 @section('content')
 
@@ -20,17 +20,20 @@
                         @csrf
                         @include('common.components.dropDown',
                         [
+                            'selectedId' => $agent_id,
                             'Onchange' => "findManager()",
                             'fieldLabel' => 'Agent Name :',
                             'fieldName' => 'agent',
                             'defaultDropDownOption' => 'Please Select Agent',
                             'options' => $agents,
+                            
                         ])
 
                         
 
                         @include('common.components.dropDown',
                         [   
+                            'selectedId' => $teamleader_id,
                             'fieldLabel' => 'TeamLeader :',
                             'fieldName' => 'teamleader_id',
                             'defaultDropDownOption' => 'Please Select Teamleader',
@@ -39,6 +42,7 @@
 
                         @include('common.components.dropDown',
                         [
+                            'selectedId' => $manager_id,
                             'fieldLabel' => 'Manager :',
                             'fieldName' => 'manager_id',
                             'defaultDropDownOption' => 'Please Select Manager',
@@ -50,7 +54,7 @@
                             <label for="primary_function_id" class="col-md-4 col-form-label text-md-right">{{ __('Primary Function :') }}</label>
 
                             <div class="col-md-6">
-                                <input id="primary_function_id" type="text" class="form-control @error('primary_function_id') is-invalid @enderror" name="primary_function_id" value="{{ old("primary_function_id") }}" required autocomplete="start_date" autofocus>
+                                <input id="primary_function_id" type="text" class="form-control @error('primary_function_id') is-invalid @enderror" name="primary_function_id" value="{{ $agents[0]->PrimaryFunction }}" required autocomplete="start_date" autofocus>
 
                                 @error('primary_function_id')
                                     <span class="invalid-feedback" role="alert">
@@ -63,6 +67,7 @@
 
                         @include('common.components.dropDown',
                         [
+                            'selectedId' => $market_id,
                             'fieldLabel' => 'Market :',
                             'fieldName' => 'market_id',
                             'defaultDropDownOption' => 'Please Select Market',
@@ -71,6 +76,7 @@
 
                         @include('common.components.dropDown',
                         [
+                            'selectedId' => $skillset_id,
                             'fieldLabel' => 'Skillset :',
                             'fieldName' => 'skillset_id',
                             'defaultDropDownOption' => 'Please Select Skillset',
@@ -79,6 +85,7 @@
                         
                         @include('common.components.dropDown',
                         [
+                            'selectedId' => $observationType_id,
                             'fieldLabel' => 'Observation Type :',
                             'fieldName' => 'observation_type_id',
                             'defaultDropDownOption' => 'Please Select Observation Type',
@@ -87,9 +94,10 @@
                         
                         @include('common.components.dropDown',
                         [
+                            'selectedId' => $eClassification_id,
                             'fieldLabel' => 'Classification :',
                             'fieldName' => 'evaluation_classification_id',
-                            'defaultDropDownOption' => 'Please Select Observation Type',
+                            'defaultDropDownOption' => 'Please Select Classification',
                             'options' => $eClassification,
                         ])
 
@@ -98,7 +106,7 @@
                                 <label for="evaluation_date" class="col-md-4 col-form-label text-md-right">{{ __('Evaluation Date :') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="evaluation_date" type="text" class="form-control @error('evaluation_date') is-invalid @enderror" placeholder="format dd:mm:yyyy" name="evaluation_date" value="{{ old("evaluation_date") }}" required autocomplete="start_date" autofocus>
+                                    <input id="evaluation_date" type="text" class="form-control @error('evaluation_date') is-invalid @enderror" placeholder="format dd:mm:yyyy" name="evaluation_date" value="{{ $evaluation[0]->evaluation_date }}" required autocomplete="start_date" autofocus>
 
                                     @error('evaluation_date')
                                         <span class="invalid-feedback" role="alert">
@@ -113,7 +121,7 @@
                             <label for="customer_query" class="col-md-4 col-form-label text-md-right">{{ __('Customer Query :') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="customer_query" type="text" class="form-control @error('customer_query') is-invalid @enderror" placeholder="Enter customer query" name="customer_query" value="{{ old("customer_query") }}" style="height: 200px" autofocus></textarea>
+                                <textarea id="customer_query" type="text" class="form-control @error('customer_query') is-invalid @enderror" placeholder="Enter customer query" name="customer_query" value="" style="height: 200px" autofocus>{{ $evaluation[0]->customer_query }}</textarea>
 
                                 @error('customer_query')
                                     <span class="invalid-feedback" role="alert">
@@ -128,7 +136,7 @@
                             <label for="agent_reponse" class="col-md-4 col-form-label text-md-right">{{ __('Agent Response :') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="agent_reponse" type="text" class="form-control @error('customer_query') is-invalid @enderror" placeholder="Enter customer query" name="agent_reponse" value="{{ old("agent_reponse") }}" style="height: 200px" autofocus></textarea>
+                                <textarea id="agent_reponse" type="text" class="form-control @error('customer_query') is-invalid @enderror" placeholder="Enter customer query" name="agent_reponse" value="" style="height: 200px" autofocus>{{ $evaluation[0]->agent_response }}</textarea>
 
                                 @error('agent_reponse')
                                     <span class="invalid-feedback" role="alert">
@@ -140,6 +148,7 @@
 
                         @include('common.components.dropDown',
                         [
+                            'selectedId' => $queryCategory_id,
                             'fieldLabel' => 'Query Category :',
                             'fieldName' => 'query_categories',
                             'defaultDropDownOption' => 'Please Query Category',

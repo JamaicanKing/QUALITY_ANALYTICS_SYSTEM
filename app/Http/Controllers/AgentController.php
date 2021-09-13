@@ -72,7 +72,7 @@ class AgentController extends Controller
             'teamleader_id' => $request->input('teamleader_id'),
             'department_id' => $request->input('department_id'),
             'primary_function_id' => $request->input('primary_function_id'),
-            'classification_id' => $request->input('teamleader_id'),
+            'classification_id' => $request->input('classification_id'),
             'location_id' => $request->input('location_id'),
             'created_date' => date('Y-m-d H:i:s'),
             'created_by' => 1,

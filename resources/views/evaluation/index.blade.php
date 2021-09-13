@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@json($evaluations)
 @section('content')
  
 
@@ -22,21 +23,35 @@
       </tr>
     </thead>
     <tbody>
-        @foreach($evaluations as $evalauation)
+       @foreach($evaluations as $evaluation)
         <tr>
-            <td>{{ $evaluation->agent_name }}</td>
+            <td>{{ $evaluation->id}}</td>
+            <td>{{ $evaluation->name}}</td>
             <td>{{ $evaluation->evaluation_date }}</td>
-            <td>{{ $evaluation->score }}</td>
+            <td>{{ $evaluation->score * 100 }}%</td>
             <td>
                 <div class="container">
                     <div class="row">
                         <div class="col" style="padding-right: 0px; flex-grow: 0;">   
-                            <a href="{{ route("rating.edit",['rating' => $evalauation->id]) }}">
+                            <a href="{{ route("evaluation.edit",
+                            [
+                                'evaluation' => $evaluation->id,
+                                'agent_id' => $evaluation->agentId,
+                                'teamleader_id' => $evaluation->teamleaderId,
+                                'manager_id' => $evaluation->managerId,
+                                'market_id' => $evaluation->marketId,
+                                'observationType_id' => $evaluation->observationTypeId,
+                                'skillset_id' => $evaluation->skillsetId,
+                                'eClassification_id' => $evaluation->eClassificationId,
+                                'queryCategory_id' => $evaluation->queryCategoryId,
+                                /*'reason_id' => $reason_id,
+                                'rating_id' => $rating_id,*/
+                                ])}}">
                                 <button role="button" class="btn btn-success" type="submit" >Edit</button>
                             </a> 
                         </div>
                         <div class="col" style="padding-right: 0px; flex-grow: 0;">
-                            <form action="{{ route("rating.destroy",['rating' => $evalauation->id]) }}" method="POST">
+                            <form action="{{ route("evaluation.destroy",['evaluation' => $evaluation->id]) }}" method="POST">
                                 @csrf
                                 @method("Delete")
                                 <button role="button" class="btn btn-danger">Delete</button>
